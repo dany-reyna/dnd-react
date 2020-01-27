@@ -26,7 +26,7 @@ function getItemStyles(currentOffset) {
   };
 }
 
-function TouchPreview({ children, zIndex }) {
+function DragLayer({ children, zIndex }) {
   const { isDragging, currentOffset, item } = useDragLayer(monitor => {
     return {
       isDragging: monitor.isDragging(),
@@ -47,9 +47,9 @@ function TouchPreview({ children, zIndex }) {
   );
 }
 
-TouchPreview.propTypes = {
+DragLayer.propTypes = {
   children: PropTypes.func.isRequired,
   zIndex: PropTypes.number.isRequired,
 };
 
-export default TouchPreview;
+export default DragLayer;

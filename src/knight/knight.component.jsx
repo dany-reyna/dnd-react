@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { useDrag, DragPreviewImage } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import ChessDragTypes from 'common/dragtypes/chess.dragtypes';
 import knightImage from 'common/assets/knight-image';
@@ -23,6 +25,10 @@ export const StyledKnight = styled.span`
   }
 `;
 
+export const KnightGhost = styled(StyledKnight)`
+  opacity: 0.85;
+`;
+
 const DraggableKnight = styled(StyledKnight)`
   opacity: ${props => (props.isDragging ? 0 : 1)};
 `;
@@ -30,7 +36,7 @@ const DraggableKnight = styled(StyledKnight)`
 function Knight({ previewImage }) {
   const [{ isDragging }, connectDrag, connectPreview] = useDrag({
     item: {
-      id: 123,
+      id: 9481,
       type: ChessDragTypes.KNIGHT,
     },
     collect: monitor => {
@@ -39,6 +45,10 @@ function Knight({ previewImage }) {
       };
     },
   });
+
+  useEffect(() => {
+    connectPreview(getEmptyImage());
+  }, [connectPreview]);
 
   return (
     <>

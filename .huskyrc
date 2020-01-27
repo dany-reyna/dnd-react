@@ -1,7 +1,7 @@
 {
   "hooks": {
     "pre-commit": "lint-staged",
-    "pre-push": "npm test",
+    "pre-push": "",
     "post-checkout": "npm install",
     "post-rewrite": "npm install",
     "post-merge": "npm install",

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import DragAndDrop from 'common/dnd/wrapper/drag-and-drop.component';
-import Knight, { StyledKnight } from 'knight/knight.component';
+import Knight, { KnightGhost } from 'knight/knight.component';
 import Square from 'square/square.component';
 
 const StyledBoard = styled.div`
@@ -16,12 +16,12 @@ const StyledBoard = styled.div`
 function App({ knightPosition }) {
   const [knightX, knightY] = knightPosition;
 
-  const renderTouchPreview = useCallback(item => {
-    return <StyledKnight>♘, {item.id}</StyledKnight>;
+  const renderDragLayer = useCallback(item => {
+    return <KnightGhost>{item.id}</KnightGhost>;
   }, []);
 
   return (
-    <DragAndDrop renderTouchPreview={renderTouchPreview}>
+    <DragAndDrop renderDragLayer={renderDragLayer}>
       <StyledBoard>
         {[...Array(64).keys()].map(i => {
           const x = i % 8;
